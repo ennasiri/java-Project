@@ -1,0 +1,57 @@
+package vue;
+
+import modele.client.Client;
+import modele.location.Location;
+import modele.voiture.Voiture;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ClientRegister extends JFrame {
+
+    private Client client;
+
+    public ClientRegister(Client client, PageDescription frame) {
+        this.client = client;
+
+        // Create fields for user input
+        JTextField nameField = new JTextField("Name");
+        JTextField emailField = new JTextField("Email");
+        JTextField passwordField = new JTextField("Password");
+
+        // Create a button for user to submit their input
+        JButton submitButton = new JButton("Register");
+        submitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Set client details based on user input
+                client.setName(nameField.getText());
+                client.setMail(emailField.getText());
+                client.setPassword(passwordField.getText());
+
+                // Go back to the previous frame
+                frame.setVisible(true);
+                dispose();
+            }
+        });
+
+        // Add the fields and button to the frame
+        add(nameField);
+        add(emailField);
+        add(passwordField);
+        add(submitButton);
+
+        // Set layout and size of the frame
+        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
+        setSize(300, 200);
+    }
+
+    public ClientRegister(Client c1, Voiture x, Location location) {
+    }
+
+    public ClientRegister(Client client, PageRecherche frame) {
+    }
+
+    public ClientRegister(Client client, PageResultats frame) {
+    }
+}
